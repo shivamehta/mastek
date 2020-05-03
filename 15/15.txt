@@ -1,0 +1,50 @@
+create table tblEmptest
+(
+
+ID int Not Null Primary Key,
+Name nvarchar(50),
+MID int
+)
+
+create table tblEmptest1
+(
+
+
+Name nvarchar(50),
+MName nvarchar(50),
+MID int FOREIGN KEY REFERENCES tblEmptest(ID)
+)
+
+insert into tblEmptest1(Name,MName,MID)
+values('Shivam','Harsha',1)
+
+insert into tblEmptest1(Name,MName,MID)
+values('Raj','Harsha',3)
+
+insert into tblEmptest1(Name,MName,MID)
+values('Mohsin','Haresh',2)
+
+
+insert into tblEmptest(ID,Name,MID)
+values(1,'Shivam',1)
+
+insert into tblEmptest(ID,Name,MID)
+values(2,'Haresh',2)
+
+insert into tblEmptest(ID,Name,MID)
+values(3,'Harsha',1)
+
+insert into tblEmptest(ID,Name)
+values(1,'Sneha')
+
+select * from tblEmptest
+select * from tblEmptest1
+
+Select E.Name as Employee, M.Name as Manager
+from tblEmptest E
+Inner Join tblEmptest1 M
+On E.MId = M.MID
+
+Select E.Name as Employee, M.Name as Manager
+from tblEmptest E
+Cross Join tblEmptest1 M

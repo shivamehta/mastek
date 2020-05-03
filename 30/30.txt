@@ -1,0 +1,15 @@
+
+select sample dbo.calculatea('27/08/1998') as Age
+create function calculatea(@DOB date)
+returns int 
+as
+begin 
+declare @DOB date
+declare @Age int
+set @Age = datediff(year, @DOB, getdate())-
+				CASE 
+				when (month(@DOB)>month(getdate()))
+				then 1 else 0
+				end 
+select @Age
+end

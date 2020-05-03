@@ -1,0 +1,36 @@
+select getdate()
+
+select datepart(day,getdate())
+select datepart(month,getdate())
+select datepart(year,getdate())
+
+select dateadd(day,20,getdate())
+
+select datediff(day,'2020-05-09 03:06:57.950','2020-05-29 03:06:57.950')
+
+
+
+
+/*declare @DOB varchar, @tmpdate datetime, @years int, @days int,@month int
+set @DOB='27/08/1998'
+select @tmpdate=@DOB
+select @years= datediff(year, @tmpdate, getdate())-
+				CASE 
+				when (month(@DOB)>month(getdate()))
+or
+(month(@DOB)=month(getdate()) and day(@DOB)> day(getdate()))
+then 1 else 0
+end
+
+select @tmpdate= DATEADD(year, @years, @tmpdate)
+
+select @month=datediff(month,@tmpdate,getdate())-
+case
+when day(@DOB)> day(getdate())
+then 1 else 0
+end
+select @tmpdate= DATEADD(month, @month, @tmpdate)
+select @days=datediff(day,@tmpdate,getdate())
+
+select @years as Years, @month as Months , @days as [days]
+*/

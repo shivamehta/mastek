@@ -1,0 +1,22 @@
+SELECT       Name, Gender, Salary, DepartmentName
+FROM           tblEmployee E
+LEFT JOIN   tblDepartment D
+ON                 E.DepartmentId = D.Id
+WHERE        D.Id =1
+
+
+SELECT         Name, Gender, Salary, DepartmentName
+FROM             tblEmployee E
+RIGHT JOIN    tblDepartment D
+ON                   E.DepartmentId = D.Id
+WHERE          E.DepartmentId =1
+
+
+select * from tblEmployee
+
+SELECT         Name, Gender, Salary, DepartmentName
+FROM              tblEmployee E
+FULL JOIN      tblDepartment D
+ON                   E.DepartmentId = D.Id
+WHERE          E.DepartmentId =1
+OR                   D.Id =1

@@ -1,0 +1,9 @@
+Create Table tblPerson
+(
+PersonId int Identity(1,1) Primary Key,
+Name nvarchar(20)
+)
+Insert into tblPerson values ('Shivam')
+Insert into tblPerson values ('Mehta')
+
+select * from tblPerson

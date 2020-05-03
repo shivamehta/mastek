@@ -1,0 +1,20 @@
+@TotalCount int output
+as
+Begin
+ Select @TotalCount = COUNT(ID) from tblEmployee
+End
+
+
+Declare @TotalEmployees int
+Execute spGetTotalCountOfEmployees1 @TotalEmployees Output
+Select @TotalEmployees
+
+Create Procedure spGetTotalCountOfEmployees2
+as
+Begin
+ return (Select COUNT(ID) from tblEmployee)
+End
+
+Declare @TotalEmployees int
+Execute @TotalEmployees = spGetTotalCountOfEmployees2
+Select @TotalEmployees

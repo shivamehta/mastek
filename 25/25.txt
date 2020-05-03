@@ -1,0 +1,4 @@
+
+select getdate() as Time
+select CURRENT_TIMESTAMP
+select SYSDATETIME() 'SYSDATETIME', SYSDATETIMEOFFSET() as sysdateof, GETUTCDATE() as utc, SYSUTCDATETIME() as sysutc 

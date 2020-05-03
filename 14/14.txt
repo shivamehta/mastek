@@ -1,0 +1,14 @@
+Select E.Name as Employee, D.Name as Department
+from tblEmployee E
+Left Join tblEmployee D
+On E.DepartmentId = D.ID
+
+Select E.Name as Employee, D.Name as Department
+from tblEmployee E
+INNER Join tblEmployee D
+On E.DepartmentId = D.ID
+
+
+Select E.Name as Employee, D.Name as Department
+from tblEmployee E
+CROSS Join tblEmployee D

@@ -1,0 +1,16 @@
+Select * from tblEmployee
+
+
+
+select right('Mehta',2)
+select left ('Shivam',4)
+
+select charindex('@', 'sm@gmail.com')
+
+select SUBSTRING('sm@gmail.com',4,9)
+
+select SUBSTRING('sm@gmail.com',charindex('@', 'sm@gmail.com')+1,len('sm@gmail.com')-charindex('@', 'sm@gmail.com'))
+
+select SUBSTRING(Email,charindex('@', Email)+1,len(Email)-charindex('@', Email)) as EmailDomain,count (Email) as Total
+from tblEmployee
+group by SUBSTRING(Email,charindex('@', Email)+1,len(Email)-charindex('@', Email))

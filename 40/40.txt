@@ -1,0 +1,25 @@
+Create view vWEmployeesDataExceptSalary
+as
+Select Id, Name, Gender, DepartmentId
+from tblEmployee
+
+
+Select * from vWEmployeesDataExceptSalary
+
+
+Update vWEmployeesDataExceptSalary 
+Set Name = 'Sneha' Where Id = 2
+
+
+Delete from vWEmployeesDataExceptSalary where Id = 2
+
+Insert into vWEmployeesDataExceptSalary values (2, 'Sneha', 'female', 2)
+
+Create view vwEmployeeDetailsByDepartment
+as
+Select Name, Salary, Gender, DepartmentName
+from tblEmployee
+join tblDepartment
+on tblEmployee.DepartmentId = tblDepartment.ID
+
+Select * from vwEmployeeDetailsByDepartment

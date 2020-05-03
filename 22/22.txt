@@ -1,0 +1,27 @@
+select ascii('S') as asciiint
+select CHAR(83) as letter
+
+declare @start int 
+set @start=65
+while (@start<=90)
+begin
+print char(@start)
+set @start=@start+1
+end
+
+select ltrim('         Shivam')
+Select ltrim(gender) from tblEmployee
+
+
+select rtrim('  Mehta        ')
+Select rtrim(gender) from tblEmployee
+
+
+Select upper(gender) from tblEmployee
+
+Select lower(gender) from tblEmployee
+
+select reverse(gender) from tblEmployee
+
+
+select len(name)as lengthofname from tblEmployee 

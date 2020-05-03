@@ -1,0 +1,7 @@
+Create Table #MastekDetails(Id int, Name nvarchar(20))
+
+Insert into #MastekDetails Values(1, 'Shivam')
+Insert into #MastekDetails Values(2, 'Haresh')
+Insert into #MastekDetails Values(3, 'Harsha')
+
+select * from #MastekDetails

@@ -1,0 +1,4 @@
+SELECT Id, COALESCE(Name, city, gender) AS Name
+FROM tblEmployee
+
+select * from tblEmployee

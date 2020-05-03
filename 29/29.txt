@@ -1,0 +1,12 @@
+SELECT Abs(-243.5) AS AbsNum;
+
+
+SELECT PI();
+
+SELECT SQRT(64);
+
+
+SELECT SIGN(255.5);
+
+SELECT round(RAND()*(10-6)+2,0)
+

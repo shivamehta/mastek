@@ -1,0 +1,75 @@
+
+Create trigger tr_tblEmployee_ForUpdate
+on tblEmp
+for Update
+as
+Begin
+ Select * from deleted
+ Select * from inserted 
+End
+
+select * from tblEmp
+
+Update tblEmp set Name = 'Rama Joshi',Salary = 45000, 
+Gender = 'Female' where Id = 3
+
+
+Alter trigger tr_tblEmployee_ForUpdate
+on tblEmp
+for Update
+as
+Begin
+      
+      Declare @Id int
+      Declare @OldName nvarchar(20), @NewName nvarchar(20)
+      Declare @OldSalary int, @NewSalary int
+      Declare @OldGender nvarchar(20), @NewGender nvarchar(20)
+      Declare @OldDeptId int, @NewDeptId int
+     
+      
+      Declare @AuditString nvarchar(1000)
+      
+      
+      Select *
+      into #TempTable
+      from inserted
+     
+      
+      While(Exists(Select Id from #TempTable))
+      Begin
+      
+            Set @AuditString = ''
+           
+      
+            Select Top 1 @Id = Id, @NewName = Name, 
+            @NewGender = Gender, @NewSalary = Salary,
+            @NewDeptId = DepartmentId
+            from #TempTable
+           
+      
+            Select @OldName = Name, @OldGender = Gender, 
+            @OldSalary = Salary, @OldDeptId = DepartmentId
+            from deleted where Id = @Id
+   
+               
+            Set @AuditString = 'Employee with Id = ' + Cast(@Id as nvarchar(4)) + ' changed'
+            if(@OldName <> @NewName)
+                  Set @AuditString = @AuditString + ' NAME from ' + @OldName + ' to ' + @NewName
+                 
+            if(@OldGender <> @NewGender)
+                  Set @AuditString = @AuditString + ' GENDER from ' + @OldGender + ' to ' + @NewGender
+                 
+            if(@OldSalary <> @NewSalary)
+                  Set @AuditString = @AuditString + ' SALARY from ' + Cast(@OldSalary as nvarchar(10))+ ' to ' + Cast(@NewSalary as nvarchar(10))
+                  
+     if(@OldDeptId <> @NewDeptId)
+                  Set @AuditString = @AuditString + ' DepartmentId from ' + Cast(@OldDeptId as nvarchar(10))+ ' to ' + Cast(@NewDeptId as nvarchar(10))
+           
+            insert into tblEmployeeAudit values(@AuditString)
+            
+     
+            Delete from #TempTable where Id = @Id
+      End
+End
+
+

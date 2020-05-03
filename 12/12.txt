@@ -1,0 +1,59 @@
+Create table tblDepartment
+(
+     ID int primary key,
+     DepartmentName nvarchar(50),
+     Location nvarchar(50),
+     DepartmentHead nvarchar(50)
+)
+Insert into tblDepartment values (1, 'IT', 'Mumbai', 'Shivam')
+Insert into tblDepartment values (2, 'Payroll', 'Delhi', 'Sneha')
+Insert into tblDepartment values (3, 'HR', 'Surat', 'Raj')
+Insert into tblDepartment values (4, 'Other Department', 'Hyderabad', 'Mohsin')
+
+
+SELECT Name, Gender, Salary, DepartmentName
+FROM tblEmployee
+CROSS JOIN tblDepartment
+select * from tblEmployee
+SELECT Name, Gender, Salary, DepartmentName
+FROM tblEmployee
+INNER JOIN tblDepartment
+ON tblEmployee.DepartmentId = tblDepartment.Id
+
+SELECT Name, Gender, Salary, DepartmentName
+FROM tblEmployee
+JOIN tblDepartment
+ON tblEmployee.DepartmentId = tblDepartment.Id
+
+
+SELECT Name, Gender, Salary, DepartmentName
+FROM tblEmployee
+LEFT OUTER JOIN tblDepartment
+ON tblEmployee.DepartmentId = tblDepartment.Id
+
+SELECT Name, Gender, Salary, DepartmentName
+FROM tblEmployee
+LEFT JOIN tblDepartment
+ON tblEmployee.DepartmentId = tblDepartment.Id
+
+
+SELECT Name, Gender, Salary, DepartmentName
+FROM tblEmployee
+RIGHT OUTER JOIN tblDepartment
+ON tblEmployee.DepartmentId = tblDepartment.Id
+
+SELECT Name, Gender, Salary, DepartmentName
+FROM tblEmployee
+RIGHT JOIN tblDepartment
+ON tblEmployee.DepartmentId = tblDepartment.Id
+
+
+SELECT Name, Gender, Salary, DepartmentName
+FROM tblEmployee
+FULL OUTER JOIN tblDepartment
+ON tblEmployee.DepartmentId = tblDepartment.Id
+
+SELECT Name, Gender, Salary, DepartmentName
+FROM tblEmployee
+FULL JOIN tblDepartment
+ON tblEmployee.DepartmentId = tblDepartment.Id

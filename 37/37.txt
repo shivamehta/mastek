@@ -1,0 +1,14 @@
+Create Clustered  Index IX_tblEmployeeSalary
+On tblEmployee (Salary ASC)
+
+Create NonClustered  Index IX_tblDepartmentName
+On tblDepartment (DepartmentName)
+
+drop index tblEmployee.PK__tblEmplo__3214EC273684499A
+
+Create Clustered Index IX_tblEmployee_Gender_Salary
+ON tblEmployee(Gender DESC, Salary ASC)
+
+Create NonClustered Index IX_tblEmployee_Name
+ON tblEmployee(Name)
+

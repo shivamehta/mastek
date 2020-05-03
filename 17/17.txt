@@ -1,0 +1,8 @@
+Select Id, Name from tblEmpInfo
+UNION ALL
+Select Id, Name from tblEmployee
+
+Select Id, Name from tblEmpInfo
+UNION 
+Select Id, Name from tblEmployee
+

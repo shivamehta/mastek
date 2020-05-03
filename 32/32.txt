@@ -1,0 +1,19 @@
+Create Function fn_ILTVF_GetEmployee()
+Returns Table
+as
+Return (Select Id, Name
+        From tblEmployee)
+
+Create Function fn_MSTVF_GetEmployee()
+Returns @Table Table (Id int, Name nvarchar(20))
+as
+Begin
+ Insert into @Table
+ Select Id, Name
+ From tblEmployee
+ 
+ Return
+End
+
+Select * from fn_ILTVF_GetEmployee()
+Select * from fn_MSTVF_GetEmployee()

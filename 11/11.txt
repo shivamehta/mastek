@@ -1,0 +1,42 @@
+
+Select Sum(Salary) from tblEmployee
+
+
+Select MIN(Salary) from tblEmployee
+
+Select Sum(Salary) from tblEmployee
+
+Select City, SUM(Salary) as TotalSalary 
+from tblEmployee
+Group by City
+
+
+
+Select City, Gender, SUM(Salary) as TotalSalary
+from tblEmployee
+group by City, Gender
+
+
+Select City, Gender, SUM(Salary) as TotalSalary,
+COUNT(ID) as TotalEmployees
+from tblEmployee
+group by City, Gender
+
+
+Select City, SUM(Salary) as TotalSalary
+from tblEmployee
+Where City = 'Mumbai'
+group by City
+
+
+Select City, SUM(Salary) as TotalSalary
+from tblEmployee
+group by City
+Having City = 'Mumbai'
+
+
+Select City, SUM(Salary) as TotalSalary
+from tblEmployee
+Where Gender = 'Male'
+group by City
+Having City = 'Mumbai'

@@ -1,0 +1,3 @@
+select * from tblDate
+select ID,name,DOB,cast(DOB as nvarchar(20)) from tblDatee
+select ID,name,DOB,convert(nvarchar,DOB) from tblDatee

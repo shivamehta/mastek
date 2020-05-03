@@ -1,0 +1,31 @@
+Create Table tblDate
+(
+ID int NOT NULL Primary key,
+[Name] nvarchar(50) NOT NULL,
+DOB nvarchar(50)
+
+)
+
+Insert Into  tblDate(ID, [Name] , DOB)
+VALUES( 1 , 'Shivam Mehta', '1998-08-27 17:00:38.937' )
+Insert Into  tblDate(ID, [Name] , DOB)
+VALUES(2  , 'Sneha chitale' , '1999-01-26 07:00:38.937' );
+Insert Into  tblDate(ID, [Name] , DOB)
+Values( 3 , 'Raj Jogi', '1998-12-15 13:00:38.937')
+
+select getdate() as Time
+select CURRENT_TIMESTAMP
+select SYSDATETIME() 'SYSDATETIME', SYSDATETIMEOFFSET() as sysdateof, GETUTCDATE() as utc, SYSUTCDATETIME() as sysut
+
+select isdate('shivam')
+select isdate('2020-04-29 02:46:55.410') 
+select isdate(getdate()) 
+select isdate('2020-04-29 02:46:55.4104756')
+
+select day(getdate())
+
+select month(getdate())
+
+
+select name ,DOB ,datename(weekday,DOB)as [Day], Month(DOB) as [month] ,Year(DOB) as [Year]
+from tblDate

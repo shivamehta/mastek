@@ -1,0 +1,8 @@
+CREATE FUNCTION fn_EmployeesByGender(@Gender nvarchar(10))
+RETURNS TABLE
+AS
+RETURN (Select Id, Name, Gender, DepartmentId
+      from tblEmployee
+      where Gender = @Gender)
+
+Select * from fn_EmployeesByGender('Male')

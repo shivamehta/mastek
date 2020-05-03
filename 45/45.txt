@@ -1,0 +1,41 @@
+Create view vWEmployeeDetails
+as
+Select tblEmployee.ID, Name, Gender, DepartmentName
+from tblEmployee 
+join tblDepartment
+on tblEmployee.DepartmentId = tblDepartment.ID
+
+
+Select * from vWEmployeeDetails
+
+Insert into vWEmployeeDetails values(7, 'Professor', 'Male', 'IT')
+
+
+Create trigger tr_vWEmployeeDetails_InsteadOfInsert
+on vWEmployeeDetails
+Instead Of Insert
+as
+Begin
+ Declare @DeptId int
+ 
+
+ Select @DeptId = tblDepartment.ID
+ from tblDepartment 
+ join inserted
+ on inserted.DepartmentName = tblDepartment.DepartmentName
+ 
+
+ if(@DeptId is null)
+ Begin
+  Raiserror('Invalid Department Name. Statement terminated', 16, 1)
+  return
+ End
+ 
+
+ Insert into tblEmployee(Id, Name, Gender, DepartmentId)
+ Select Id, Name, Gender, @DeptId
+ from inserted
+End
+
+Insert into vWEmployeeDetails values(3, 'Tokyo', 'Female', 'HR')
+

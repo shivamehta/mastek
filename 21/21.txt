@@ -1,0 +1,46 @@
+Create Table tblEmployee
+(
+ID int NOT NULL Primary key,
+[Name] nvarchar(50) NOT NULL,
+Email nvarchar(50),
+Gender nvarchar(50),
+Salary int,
+City nvarchar(50)
+)
+
+
+
+Insert Into  tblEmployee(ID, [Name] , Email , Gender, Salary, City)
+VALUES( 1 , 'Shivam Mehta', 'sm@gmail.com' , 'Male' , 55000 ,'mumbai' )
+Insert Into tblEmployee(ID, [Name] , Email , Gender,Salary, City)
+VALUES(2  , 'Sneha chitale', 'sc@yahoo.com' ,'Female', 10000,'Chennai'  );
+Insert Into tblEmployee(ID, [Name] , Email , Gender,Salary, City)
+Values( 3 , 'Raj Jogi', 'rj@gmail.com' , 'Male',35000, 'Yemen' )
+Insert Into tblEmployee(ID, [Name] , Email , Gender,Salary, City)
+Values( 4 , 'Mohsin Sayed', 'ms@yahoo.com' ,'Male',75000,'Wuhan' )
+Insert Into tblEmployee(ID, [Name] , Email , Gender, Salary, City)
+Values( 5 , 'Parth Kholkute', 'pk@gmail.com' , 'Male',47000,'Mumbai' )
+Insert Into  tblEmployee(ID, [Name] , Email , Gender,Salary, City)
+Values( 6 , 'Rushi Desai', 'rd@abc.com' ,'Male',22000,'Mumbai' )
+Insert Into  tblEmployee(ID, [Name] , Email , Gender,Salary, City)
+Values( 7 , 'Deepankar Rai', 'dr@gmail.com' , ' Male',60000,'Surat')
+Insert Into  tblEmployee(ID, [Name] , Email , Gender,Salary, City)
+Values(8  , 'Harsha Mehta', 'hj@abc.com' ,'Female', 36000,'Pune ' )
+Insert Into tblEmployee(ID, [Name] , Email , Gender,Salary, City)
+Values( 9 , 'Haresh Mehta', 'hm@Gmail.com' , 'Male',50000, 'Amreli' )
+Insert Into  tblEmployee(ID, [Name] , Email , Gender, Salary, City)
+Values( 10 , 'Yash Malhotra', 'ym@abc.com' , 'Male' ,20000 ,'Thane' )
+
+
+Select * from tblEmployee
+
+Create Procedure spGetNameById
+@id int 
+as 
+Begin
+select Name from tblEmployee where id = @id
+end 
+
+execute spGetNameById 1
+
+select Name from tblEmployee where id = 1

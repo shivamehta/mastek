@@ -1,0 +1,16 @@
+Select * from tblEmployee
+
+
+select replicate('shivam',3)
+
+
+select id,name , PATINDEX('%@gmail.com', Email) as Firstoc
+from tblEmployee
+where PATINDEX('%@gmail.com', Email)>0
+
+select email, replace(Email, '.com','.net')
+from tblEmployee
+
+select Name,Email,
+stuff (email, 2, 1, '*****') as stuffemail
+from tblEmployee
