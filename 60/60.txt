@@ -1,0 +1,4 @@
+Select [Name],
+(Select SUM(QuantitySold) from tblProductSales where ProductId = tblProducts.Id) as TotalQuantity
+from tblProducts
+order by Name

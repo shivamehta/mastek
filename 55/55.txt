@@ -1,0 +1,115 @@
+Create Table tblProduct
+(
+ ProductId int NOT NULL primary key,
+ Name nvarchar(50),
+ UnitPrice int,
+ QtyAvailable int
+)
+
+
+Insert into tblProduct values(1, 'Laptops', 2340, 100)
+Insert into tblProduct values(2, 'Desktops', 3467, 50)
+
+Create Table tblProductSales
+(
+ ProductSalesId int primary key,
+ ProductId int,
+ QuantitySold int
+)
+
+
+
+Create Procedure spSellProduct
+@ProductId int,
+@QuantityToSell int
+as
+Begin
+ -- Check the stock available, for the product we want to sell
+ Declare @StockAvailable int
+ Select @StockAvailable = QtyAvailable 
+ from tblProduct where ProductId = @ProductId
+ 
+ -- Throw an error to the calling application, if enough stock is not available
+ if(@StockAvailable < @QuantityToSell)
+   Begin
+  Raiserror('Not enough stock available',16,1)
+   End
+ -- If enough stock available
+ Else
+   Begin
+    Begin Tran
+         -- First reduce the quantity available
+  Update tblProduct set QtyAvailable = (QtyAvailable - @QuantityToSell)
+  where ProductId = @ProductId
+  
+  Declare @MaxProductSalesId int
+  -- Calculate MAX ProductSalesId  
+  Select @MaxProductSalesId = Case When 
+          MAX(ProductSalesId) IS NULL 
+          Then 0 else MAX(ProductSalesId) end 
+         from tblProductSales
+  -- Increment @MaxProductSalesId by 1, so we don't get a primary key violation
+  Set @MaxProductSalesId = @MaxProductSalesId + 1
+  Insert into tblProductSales values(@MaxProductSalesId, @ProductId, @QuantityToSell)
+    Commit Tran
+   End
+End
+Alter Procedure spSellProduct
+@ProductId int,
+@QuantityToSell int
+as
+Begin
+ -- Check the stock available, for the product we want to sell
+ Declare @StockAvailable int
+ Select @StockAvailable = QtyAvailable 
+ from tblProduct where ProductId = @ProductId
+ 
+ -- Throw an error to the calling application, if enough stock is not available
+ if(@StockAvailable < @QuantityToSell)
+   Begin
+  Raiserror('Not enough stock available',16,1)
+   End
+ -- If enough stock available
+ Else
+   Begin
+    Begin Tran
+         -- First reduce the quantity available
+  Update tblProduct set QtyAvailable = (QtyAvailable - @QuantityToSell)
+  where ProductId = @ProductId
+  
+  Declare @MaxProductSalesId int
+  -- Calculate MAX ProductSalesId  
+  Select @MaxProductSalesId = Case When 
+          MAX(ProductSalesId) IS NULL 
+          Then 0 else MAX(ProductSalesId) end 
+         from tblProductSales
+  -- Increment @MaxProductSalesId by 1, so we don't get a primary key violation
+  Set @MaxProductSalesId = @MaxProductSalesId + 1
+  Insert into tblProductSales values(@MaxProductSalesId, @ProductId, @QuantityToSell)
+  if(@@ERROR <> 0)
+  Begin
+   Rollback Tran
+   Print 'Rolled Back Transaction'
+  End
+  Else
+  Begin
+   Commit Tran 
+   Print 'Committed Transaction'
+  End
+   End
+End
+select * from tblProduct
+Insert into tblProduct values(3, 'Mobile Phone', 1500, 100)
+if(@@ERROR <> 0)
+ Print 'Error Occurred'
+Else
+ Print 'No Errors'
+
+ Declare @Error int
+Insert into tblProduct values(4, 'Mobile Phone', 1500, 100)
+Set @Error = @@ERROR
+Select * from tblProduct
+if(@Error <> 0)
+ Print 'Error Occurred'
+Else
+ Print 'No Errors'

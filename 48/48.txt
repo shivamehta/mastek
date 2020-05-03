@@ -1,0 +1,67 @@
+Create view vWEmployeeCount
+as
+Select DepartmentName, DepartmentId, COUNT(*) as TotalEmployees
+from tblEmployee
+join tblDepartment
+on tblEmployee.DepartmentId = tblDepartment.ID
+group by DepartmentName, DepartmentId
+
+select * from vWEmployeeCount
+Select DepartmentName, TotalEmployees 
+from  vWEmployeeCount
+where  TotalEmployees >= 2
+
+Select DepartmentName, DepartmentId, COUNT(*) as TotalEmployees
+into #TempEmployeeCount
+from tblEmployee
+join tblDepartment
+on tblEmployee.DepartmentId = tblDepartment.Id
+group by DepartmentName, DepartmentId
+
+Select DepartmentName, TotalEmployees
+From #TempEmployeeCount
+where TotalEmployees >= 2
+
+Drop Table #TempEmployeeCount
+
+
+Declare @tblEmployeeCount table
+(DeptName nvarchar(20),DepartmentId int, TotalEmployees int)
+
+Insert @tblEmployeeCount
+Select DepartmentName, DepartmentId, COUNT(*) as TotalEmployees
+from tblEmployee
+join tblDepartment
+on tblEmployee.DepartmentId = tblDepartment.Id
+group by DepartmentName, DepartmentId
+
+Select DeptName, TotalEmployees
+From @tblEmployeeCount
+where  TotalEmployees >= 2
+
+
+Select DeptName, TotalEmployees
+from 
+ (
+  Select DeptName, DepartmentId, COUNT(*) as TotalEmployees
+  from tblEmployee
+  join tblDepartment
+  on tblEmployee.DepartmentId = tblDepartment.DeptId
+  group by DeptName, DepartmentId
+ ) 
+as EmployeeCount
+where TotalEmployees >= 2
+
+With EmployeeCount(DeptName, DepartmentId, TotalEmployees)
+as
+(
+ Select DepartmentName, DepartmentId, COUNT(*) as TotalEmployees
+ from tblEmployee
+ join tblDepartment
+ on tblEmployee.DepartmentId = tblDepartment.Id
+ group by DepartmentName, DepartmentId
+)
+
+Select DeptName, TotalEmployees
+from EmployeeCount
+where TotalEmployees >= 2

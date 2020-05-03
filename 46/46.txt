@@ -1,0 +1,58 @@
+Create view vWEmployeeDetails
+as
+Select Id, Name, Gender, DepartmentName
+from tblEmployee 
+join tblDepartment
+on tblEmployee.DepartmentId = tblDepartment.ID
+
+
+Select * from vWEmployeeDetails
+
+Update vWEmployeeDetails 
+set Name = 'Shivam', DeptName = 'IT'
+where Id = 1
+
+Update vWEmployeeDetails 
+set DeptName = 'IT'
+where Id = 1
+
+Update tblDepartment set DeptName = 'HR' where DeptId = 3
+
+Script to create INSTEAD OF UPDATE trigger:
+Create Trigger tr_vWEmployeeDetails_InsteadOfUpdate
+on vWEmployeeDetails
+instead of update
+as
+Begin
+ if(Update(Id))
+ Begin
+  Raiserror('Id cannot be changed', 16, 1)
+  Return
+ End
+ 
+
+ if(Update(DepartmentName)) 
+ Begin
+  Declare @DeptId int
+
+  Select @DeptId = tblDepartment.ID
+  from tblDepartment
+  join inserted
+  on inserted.DepartmentName = tblDepartment.DepartmentName
+  
+  if(@DeptId is NULL )
+  Begin
+   Raiserror('Invalid Department Name', 16, 1)
+   Return
+  End
+ End
+ End
+
+ 
+Update vWEmployeeDetails 
+set DeptName = 'IT'
+where Id = 1
+
+Update vWEmployeeDetails 
+set Name = 'Johny', Gender = 'Female', DeptName = 'IT' 
+where Id = 1

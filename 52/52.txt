@@ -1,0 +1,46 @@
+Create Table tblEmpInfo
+(
+
+[Name] nvarchar(50) NOT NULL,
+Gender nvarchar(50),
+Salary int,
+DeptName nvarchar(5),
+DeptHead nvarchar(50),
+DeptLocation nvarchar(50)
+)
+Insert Into  tblEmpInfo( [Name] , Gender, Salary, DeptName, DeptHead, DeptLocation)
+VALUES( 'Shivam Mehta', 'Male' , 55000 ,'IT','Haresh','mumbai' )
+Insert Into  tblEmpInfo( [Name] , Gender, Salary, DeptName, DeptHead, DeptLocation)
+VALUES( 'Sneha chitale','Female', 10000,'HR','Harsha','Chennai'  );
+Insert Into  tblEmpInfo( [Name] , Gender, Salary, DeptName, DeptHead, DeptLocation)
+Values( 'Raj Jogi', 'Male',35000,'IT','Haresh', 'Yemen' )
+Insert Into  tblEmpInfo( [Name] , Gender, Salary, DeptName, DeptHead, DeptLocation)
+Values( 'Mohsin Sayed','Male',75000,'HR','Harsha','Wuhan' )
+Insert Into  tblEmpInfo( [Name] , Gender, Salary, DeptName, DeptHead, DeptLocation)
+Values( 'Parth Kholkute', 'Male',47000,'IT','Haresh','Mumbai' )
+
+
+select * from tblEmpInfo
+
+Create Table tblEmpInfo1nf
+(
+
+[Name] nvarchar(50) NOT NULL,
+Gender nvarchar(50),
+Salary int,
+DeptName nvarchar(5),
+DeptHead nvarchar(50),
+DeptLocation nvarchar(50)
+)
+
+Insert Into  tblEmpInfo1nf( [Name] , Gender, DeptName, DeptHead, DeptLocation)
+VALUES( 'Shivam Mehta Raj Jogi Parth Kholkute', 'Male' ,'IT','Haresh','mumbai' )
+Insert Into  tblEmpInfo1nf( [Name] , Gender, DeptName, DeptHead, DeptLocation)
+VALUES( 'Sneha chitale Mohsin Sayed','Female','HR','Harsha','Chennai'  );
+
+select [Name],Gender,DeptName
+from tblEmpInfo
+
+
+select [Name],Gender,DeptName
+from tblEmpInfo1nf

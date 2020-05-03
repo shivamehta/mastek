@@ -1,0 +1,22 @@
+With EmployeesCountBy_Payroll_IT_Dept(DepartmentName, Total)
+as
+(
+ Select DepartmentName, COUNT(Id) as TotalEmployees
+ from tblEmployee
+ join tblDepartment 
+ on tblEmployee.DepartmentId = tblDepartment.Id
+ where DepartmentName IN ('Payroll','IT')
+ group by DepartmentName
+)
+EmployeesCountBy_HR_Admin_Dept(DepartmentName, Total)
+as
+(
+ Select DeptName, COUNT(Id) as TotalEmployees
+ from tblEmployee
+ join tblDepartment 
+ on tblEmployee.DepartmentId = tblDepartment.DeptId
+ group by DeptName 
+)
+Select * from EmployeesCountBy_HR_Admin_Dept 
+UNION
+Select * from EmployeesCountBy_Payroll_IT_Dept

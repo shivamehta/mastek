@@ -1,0 +1,15 @@
+Delete from vWEmployeeDetails where Id = 1
+
+Create Trigger tr_vWEmployeeDetails_InsteadOfDelete
+on vWEmployeeDetails
+instead of delete
+as
+Begin
+ Delete tblEmployee 
+ from tblEmployee
+ join deleted
+ on tblEmployee.Id = deleted.Id
+ 
+End
+
+Delete from vWEmployeeDetails where Id = 1

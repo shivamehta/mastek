@@ -1,0 +1,46 @@
+Alter procedure spTransaction1
+as 
+Begin 
+    Begin Tran
+    Begin Try 
+         Update TableA Set Name = 'SHivam Transaction 1' where Id = 1 
+         Waitfor delay '00:00:05' 
+         Update TableB Set Name = 'MEhta Transaction 1' where Id = 1 
+    
+         Commit Transacntion
+         Select 'Trasaction Successful'   
+    End Try
+    Begin Catch
+         -- Check if the error is deadlock error
+         If(ERROR_NUMBER() = 1205)
+         Begin
+             Select 'Deadlock. Transaction failed. Please retry'
+         End
+         
+         Rollback
+    End Catch   
+End
+
+execute spTransaction1
+
+--new window
+
+Alter procedure spTransaction2 
+as 
+Begin 
+    Begin Tran
+    Begin Try
+         Update TableB Set Name = 'Mary Transaction 2' where Id = 1
+         Waitfor delay '00:00:05'
+         Update TableA Set Name = 'Mark Transaction 2' where Id = 1
+         Commit Transaction
+         Select 'Transaction Successful'   
+    End Try
+    Begin Catch
+         If(ERROR_NUMBER() = 1205)
+         Begin
+             Select 'Deadlock. Transaction failed. Please retry'
+        End
+         Rollback
+    End Catch   
+End

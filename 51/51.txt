@@ -1,0 +1,28 @@
+
+Select Worker.Name as [Worker Name],
+IsNull(Manager.Name, 'Super Boss') as [Manager Name]
+from tblWorker Worker
+left join tblWorker Manager
+on Worker.ManagerId = Manager.WorkerId
+
+With
+  WorkerCTE (WorkerId, Name, ManagerId, [Level])
+  as
+  (
+    Select WorkerId, Name, ManagerId, 1
+    from tblWorker
+    where ManagerId is null
+    
+    union all
+    
+    Select tblWorker.WorkerId, tblWorker.Name, 
+    tblWorker.ManagerId, WorkerCTE.[Level] + 1
+    from tblWorker
+    join WorkerCTE
+    on tblWorker.ManagerID = WorkerCTE.WorkerId
+  )
+Select WorCTE.Name as Worker, Isnull(MgrCTE.Name, 'Super Boss') as Manager, 
+WorCTE.[Level] 
+from WorkerCTE WorCTE
+left join WorkerCTE MgrCTE
+on WorCTE.ManagerId = MgrCTE.WorkerId

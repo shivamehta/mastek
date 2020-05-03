@@ -1,0 +1,58 @@
+With Employees_Name_Gender
+as
+(
+ Select Id, Name, Gender from tblEmployee
+)
+Select * from Employees_Name_Gender
+
+With Employees_Name_Gender
+as
+(
+ Select Id, Name, Gender from tblEmployee
+)
+Update Employees_Name_Gender Set Gender = 'Female' where Id = 1
+
+
+With EmployeesByDepartment
+as
+(
+ Select Id, Name, Gender, DeptName 
+ from tblEmployee
+ join tblDepartment
+ on tblDepartment.DeptId = tblEmployee.DepartmentId
+)
+Select * from EmployeesByDepartment
+With EmployeesByDepartment
+as
+(
+ Select Id, Name, Gender, DeptName 
+ from tblEmployee
+ join tblDepartment
+ on tblDepartment.DeptId = tblEmployee.DepartmentId
+)
+Update EmployeesByDepartment set Gender = 'Male' where Id = 1
+
+With EmployeesByDepartment
+as
+(
+ Select Id, Name, Gender, DeptName 
+ from tblEmployee
+ join tblDepartment
+ on tblDepartment.DeptId = tblEmployee.DepartmentId
+)
+Update EmployeesByDepartment set 
+Gender = 'Male', DeptName = 'HR'
+where Id = 1
+
+
+With EmployeesByDepartment
+as
+(
+ Select Id, Name, Gender, DeptName 
+ from tblEmployee
+ join tblDepartment
+ on tblDepartment.DeptId = tblEmployee.DepartmentId
+)
+Update EmployeesByDepartment set 
+DeptName = 'HR' where Id = 1
+

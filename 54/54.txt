@@ -1,0 +1,105 @@
+
+Create Table tblSales
+(
+SalesAgent nvarchar(50),
+SalesCountry nvarchar(50),
+SalesAmount int
+)
+select * from tblSales
+insert into tblSales(SalesAgent,SalesCountry,SalesAmount)
+values('Shivam','Ind',120)
+
+insert into tblSales(SalesAgent,SalesCountry,SalesAmount)
+values('Shivam','Ind',100)
+
+insert into tblSales(SalesAgent,SalesCountry,SalesAmount)
+values('Shivam','Ind',160)
+
+insert into tblSales(SalesAgent,SalesCountry,SalesAmount)
+values('Shivam','Ind',120)
+
+insert into tblSales(SalesAgent,SalesCountry,SalesAmount)
+values('Shivam','Ind',180)
+
+insert into tblSales(SalesAgent,SalesCountry,SalesAmount)
+values('Shivam','US',120)
+
+insert into tblSales(SalesAgent,SalesCountry,SalesAmount)
+values('Shivam','US',129)
+
+insert into tblSales(SalesAgent,SalesCountry,SalesAmount)
+values('Shivam','US',121)
+
+insert into tblSales(SalesAgent,SalesCountry,SalesAmount)
+values('Shivam','UK',120)
+
+insert into tblSales(SalesAgent,SalesCountry,SalesAmount)
+values('Shivam','UK',920)
+
+insert into tblSales(SalesAgent,SalesCountry,SalesAmount)
+values('Shivam','UK',420)
+
+insert into tblSales(SalesAgent,SalesCountry,SalesAmount)
+values('Shivam','Ind',170)
+
+insert into tblSales(SalesAgent,SalesCountry,SalesAmount)
+values('Shivam','Ind',120)
+
+
+insert into tblSales(SalesAgent,SalesCountry,SalesAmount)
+values('Raj','Ind',120)
+
+insert into tblSales(SalesAgent,SalesCountry,SalesAmount)
+values('Raj','Ind',920)
+
+insert into tblSales(SalesAgent,SalesCountry,SalesAmount)
+values('Raj','Ind',320)
+
+insert into tblSales(SalesAgent,SalesCountry,SalesAmount)
+values('Raj','Ind',520)
+
+insert into tblSales(SalesAgent,SalesCountry,SalesAmount)
+values('Raj','US',120)
+
+insert into tblSales(SalesAgent,SalesCountry,SalesAmount)
+values('Raj','US',120)
+
+insert into tblSales(SalesAgent,SalesCountry,SalesAmount)
+values('Raj','US',120)
+
+insert into tblSales(SalesAgent,SalesCountry,SalesAmount)
+values('Raj','US',120)
+
+insert into tblSales(SalesAgent,SalesCountry,SalesAmount)
+values('Raj','UK',120)
+
+insert into tblSales(SalesAgent,SalesCountry,SalesAmount)
+values('Raj','UK',120)
+
+insert into tblSales(SalesAgent,SalesCountry,SalesAmount)
+values('Raj','UK',120)
+
+insert into tblSales(SalesAgent,SalesCountry,SalesAmount)
+values('Raj','UK',120)
+
+insert into tblSales(SalesAgent,SalesCountry,SalesAmount)
+values('Mohsin','Ind',1200)
+
+insert into tblSales(SalesAgent,SalesCountry,SalesAmount)
+values('Mohsin','US',1120)
+
+insert into tblSales(SalesAgent,SalesCountry,SalesAmount)
+values('Mohsin','UK',1120)
+
+
+select * from tblSales
+Select SalesAgent,Ind,US,UK
+from tblSales
+pivot
+(
+sum(SalesAmount)
+for SalesCountry
+in([Ind],[US],[UK])
+)
+as pivottable
+

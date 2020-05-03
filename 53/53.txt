@@ -1,0 +1,67 @@
+
+
+select * from tblEmpInfo
+
+Create Table tblEmpInfo1nf
+(
+
+[Name] nvarchar(50) NOT NULL,
+Gender nvarchar(50),
+Salary int,
+DeptName nvarchar(5),
+DeptHead nvarchar(50),
+DeptLocation nvarchar(50)
+)
+
+
+
+Insert Into  tblEmpInfo( [Name] , Gender, Salary, DeptName, DeptHead, DeptLocation)
+VALUES( 'Shivam Mehta', 'Male' , 55000 ,'IT','Haresh','mumbai' )
+Insert Into  tblEmpInfo( [Name] , Gender, Salary, DeptName, DeptHead, DeptLocation)
+VALUES( 'Sneha chitale','Female', 10000,'HR','Harsha','Chennai'  );
+Insert Into  tblEmpInfo( [Name] , Gender, Salary, DeptName, DeptHead, DeptLocation)
+Values( 'Raj Jogi', 'Male',35000,'IT','Haresh', 'Yemen' )
+Insert Into  tblEmpInfo( [Name] , Gender, Salary, DeptName, DeptHead, DeptLocation)
+Values( 'Mohsin Sayed','Male',75000,'HR','Harsha','Wuhan' )
+Insert Into  tblEmpInfo( [Name] , Gender, Salary, DeptName, DeptHead, DeptLocation)
+Values( 'Parth Kholkute', 'Male',47000,'IT','Haresh','Mumbai' )
+
+Create Table tblEmpInfo1
+(
+ID int NOT NULL Primary key,
+[Name] nvarchar(50) NOT NULL,
+Gender nvarchar(50),
+Salary int,
+DeptID int,
+CONSTRAINT FK_Dept FOREIGN KEY (DeptID)
+REFERENCES tblEmpInfo2(DeptID)
+)
+
+Insert Into  tblEmpInfo1(ID, [Name] , Gender, Salary, DeptID)
+VALUES(1, 'Shivam Mehta', 'Male' , 55000 ,1 )
+Insert Into  tblEmpInfo1(ID, [Name] , Gender, Salary, DeptID)
+VALUES(2, 'Sneha chitale','Female', 10000,2  );
+Insert Into  tblEmpInfo1(ID, [Name] , Gender, Salary, DeptID)
+Values( 3,'Raj Jogi', 'Male',35000,2)
+Insert Into  tblEmpInfo1(ID, [Name] , Gender, Salary, DeptID)
+Values( 4,'Mohsin Sayed','Male',75000,1 )
+Insert Into  tblEmpInfo1(ID, [Name] , Gender, Salary, DeptID)
+Values( 5,'Parth Kholkute', 'Male',47000,2 )
+
+Create Table tblEmpInfo2
+(
+
+DeptID int Primary key,
+DeptHead nvarchar(50),
+DeptLocation nvarchar(50)
+)
+
+Insert Into  tblEmpInfo2( DeptID, DeptHead, DeptLocation)
+VALUES(1,'Haresh','mumbai' )
+
+Insert Into  tblEmpInfo2( DeptID, DeptHead, DeptLocation)
+VALUES(2,'Harsha','chennai' )
+
+select * from tblEmpInfo
+select * from tblEmpInfo2
+select * from tblEmpInfo1
